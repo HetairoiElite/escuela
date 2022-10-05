@@ -12,13 +12,55 @@ switch ($_SESSION['idtipousu']) {
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $dataUsuario = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $dataUsuario = $dataUsuario[0];
 
-        $idDireccion = $dataUsuario[0]['direccion'];
+        $idDireccion = $dataUsuario['direccion'];
 
         $consulta = "SELECT * FROM direcciones where id = $idDireccion";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $dataDireccion = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $dataDireccion = $dataDireccion[0];
+        break;
+        // Docentes
+    case 2:
+        $tipousu = $_SESSION['idtipousu'];
+        $idUser = $_SESSION['idUser'];
+        $consulta = "SELECT * FROM usuarios inner join empleado on 
+        usuarios.id = empleado.usuario where usuarios.tipousu = $tipousu and usuarios.id = $idUser";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataUsuario = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $dataUsuario = $dataUsuario[0];
+
+        $idDireccion = $dataUsuario['direccion'];
+
+        $consulta = "SELECT * FROM direcciones where id = $idDireccion";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataDireccion = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $dataDireccion = $dataDireccion[0];
+        break;
+        //Alumnos
+    case 3:
+        $tipousu = $_SESSION['idtipousu'];
+        $idUser = $_SESSION['idUser'];
+        $consulta = "SELECT * FROM usuarios inner join alumnos on 
+        usuarios.id = alumnos.id_usuario where usuarios.tipousu = $tipousu and usuarios.id = $idUser";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataUsuario = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $dataUsuario = $dataUsuario[0];
+
+        $idDireccion = $dataUsuario['direccion'];
+
+        $consulta = "SELECT * FROM direcciones where id = $idDireccion";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataDireccion = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $dataDireccion = $dataDireccion[0];
         break;
 }
 
@@ -110,21 +152,22 @@ switch ($_SESSION['idtipousu']) {
                                 <form id="formEditarPerfil" method="post">
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="usuario"><strong>Usuario</strong></label><input class="form-control" type="text" id="usuario" placeholder="user@example.com" name="usuario"></div>
+                                            <div class="mb-3"><label class="form-label" for="usuario"><strong>Usuario</strong></label><input class="form-control" type="text" id="usuario" placeholder="user@example.com" name="usuario" value="<?php echo $dataUsuario['correo'] ?>" readonly></div>
+                                            <div class="mb-3"><input class="form-control" type="hidden" id="usuario" placeholder="user@example.com" name="usuario" value="<?php echo $dataUsuario['correo'] ?>" readonly></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="password"><strong>Email Address</strong></label><input class="form-control" type="password" id="password" placeholder="Contraseña" name="password"></div>
+                                            <div class="mb-3"><label class="form-label" for="password"><strong>Cambiar contraseña</strong></label><input class="form-control" type="password" id="password" placeholder="Contraseña" name="password"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="nombre"><strong>Nombre</strong></label><input class="form-control" type="text" id="nombre" placeholder="Nombre" name="nombre"></div>
+                                            <div class="mb-3"><label class="form-label" for="nombre"><strong>Nombre</strong></label><input class="form-control" type="text" id="nombre" placeholder="Nombre" name="nombre" value="<?php echo $dataUsuario['nombre'] ?>"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="apellidoP"><strong>Apellido Paterno</strong></label><input class="form-control" type="text" id="apellidoP" placeholder="Apellido paterno" name="apellidoP"></div>
+                                            <div class="mb-3"><label class="form-label" for="apellidoP"><strong>Apellido Paterno</strong></label><input class="form-control" type="text" id="apellidoP" placeholder="Apellido paterno" name="apellidoP" value="<?php echo $dataUsuario['apellidoP'] ?>"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="apellidoM"><strong>Apellido Materno</strong></label><input class="form-control" type="text" id="apellidoM" placeholder="Apellido materno" name="apellidoM"></div>
+                                            <div class="mb-3"><label class="form-label" for="apellidoM"><strong>Apellido Materno</strong></label><input class="form-control" type="text" id="apellidoM" placeholder="Apellido materno" name="apellidoM" value="<?php echo $dataUsuario['apellidoM'] ?>"></div>
                                         </div>
                                     </div>
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
@@ -152,8 +195,8 @@ switch ($_SESSION['idtipousu']) {
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="cp_response">Código Postal Respuesta:</label>
-                                                <input type="text" name="cp_response" id="cp_response" class="form-control" disabled readonly>
-                                                <input type="hidden" name="cp_responseh" id="cp_responseh">
+                                                <input type="text" name="cp_response" id="cp_response" class="form-control" value="<?php echo $dataDireccion['codigo_postal'] ?>" disabled readonly>
+                                                <input type="hidden" name="cp_responseh" id="cp_responseh" value="<?php echo $dataDireccion['codigo_postal'] ?>">
                                                 <br>
                                             </div>
                                         </div>
@@ -162,6 +205,7 @@ switch ($_SESSION['idtipousu']) {
                                                 <label for="list_colonias">Colonias:</label>
                                                 <select name="list_colonias" id="list_colonias" class="form-control">
                                                     <option>Seleccione</option>
+                                                    <?php echo '<option value= "' . $dataDireccion['colonia'] . '" selected>' . $dataDireccion['colonia']  . '</option>' ?>
                                                 </select>
                                                 <br>
                                             </div>
@@ -171,8 +215,8 @@ switch ($_SESSION['idtipousu']) {
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="tipo_asentamiento">Tipo Asentamiento:</label>
-                                                <input type="text" name="tipo_asentamiento" id="tipo_asentamiento" class="form-control" disabled readonly>
-                                                <input type="hidden" name="tipo_asentamientoh" id="tipo_asentamientoh">
+                                                <input type="text" name="tipo_asentamiento" id="tipo_asentamiento" class="form-control" value="<?php echo $dataDireccion['tipo_asentamiento'] ?>" disabled readonly>
+                                                <input type="hidden" name="tipo_asentamientoh" id="tipo_asentamientoh" value="<?php echo $dataDireccion['tipo_asentamiento'] ?>">
                                                 <br>
 
                                             </div>
@@ -180,16 +224,16 @@ switch ($_SESSION['idtipousu']) {
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="municipio">Municipio:</label>
-                                                <input type="text" name="municipio" id="municipio" class="form-control" disabled readonly>
-                                                <input type="hidden" name="municipioh" id="municipioh">
+                                                <input type="text" name="municipio" id="municipio" class="form-control" value="<?php echo $dataDireccion['municipio'] ?>" disabled readonly>
+                                                <input type="hidden" name="municipioh" id="municipioh" value="<?php echo $dataDireccion['municipio'] ?>">
                                                 <br>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="estado">Estado:</label>
-                                                <input type="text" name="estado" id="estado" class="form-control" disabled readonly>
-                                                <input type="hidden" name="estadoh" id="estadoh">
+                                                <input type="text" name="estado" id="estado" class="form-control" value="<?php echo $dataDireccion['estado'] ?>" disabled readonly>
+                                                <input type="hidden" name="estadoh" id="estadoh" value="<?php echo $dataDireccion['estado'] ?>">
                                                 <br>
 
                                             </div>
@@ -200,8 +244,8 @@ switch ($_SESSION['idtipousu']) {
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="ciudad">Ciudad:</label>
-                                                <input type="text" name="ciudad" id="ciudad" class="form-control" disabled readonly>
-                                                <input type="hidden" name="ciudadh" id="ciudadh">
+                                                <input type="text" name="ciudad" id="ciudad" class="form-control" value="<?php echo $dataDireccion['ciudad'] ?>" disabled readonly>
+                                                <input type="hidden" name="ciudadh" id="ciudadh" value="<?php echo $dataDireccion['ciudad'] ?>">
                                                 <br>
                                             </div>
                                         </div>
@@ -209,13 +253,13 @@ switch ($_SESSION['idtipousu']) {
                                             <div class="mb-3">
 
                                                 <label for="calle" class="form-label">Calle</label>
-                                                <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle">
+                                                <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle" value="<?php echo $dataDireccion['calle'] ?>">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
                                                 <label for="numero" class="form-label">Número</label>
-                                                <input type="number" name="numero" class="form-control" id="numero" placeholder="Número">
+                                                <input type="number" name="numero" class="form-control" id="numero" placeholder="Número" value="<?php echo $dataDireccion['numero'] ?>">
                                             </div>
                                         </div>
                                     </div>
