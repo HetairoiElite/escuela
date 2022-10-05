@@ -152,8 +152,23 @@ switch ($_SESSION['idtipousu']) {
                                 <form id="formEditarPerfil" method="post">
                                     <div class="row">
                                         <div class="col">
+                                            <!-- hidden button-->
+                                            <input type="hidden" name="boton" id="boton" value="Perfil">
+                                            <input type="hidden" name="tipousu" id="tipousu" value="<?php echo $dataUsuario['tipousu'] ?>">
+                                            <input type="hidden" name="idusu" id="idusu" value="<?php
+                                                                                                switch ($_SESSION['idtipousu']) {
+                                                                                                    case 1:
+                                                                                                    case 2:
+                                                                                                        echo $dataUsuario['clave_empleado'];
+                                                                                                        break;
+                                                                                                    case 3:
+                                                                                                        echo $dataUsuario['matricula'];
+                                                                                                        break;
+                                                                                                }
+                                                                                                ?>">
+
                                             <div class="mb-3"><label class="form-label" for="usuario"><strong>Usuario</strong></label><input class="form-control" type="text" id="usuario" placeholder="user@example.com" name="usuario" value="<?php echo $dataUsuario['correo'] ?>" readonly></div>
-                                            <div class="mb-3"><input class="form-control" type="hidden" id="usuario" placeholder="user@example.com" name="usuario" value="<?php echo $dataUsuario['correo'] ?>" readonly></div>
+                                            <div class="mb-3"><input class="form-control" type="hidden" id="usuarioh" placeholder="user@example.com" name="usuario" value="<?php echo $dataUsuario['correo'] ?>" readonly></div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3"><label class="form-label" for="password"><strong>Cambiar contraseña</strong></label><input class="form-control" type="password" id="password" placeholder="Contraseña" name="password"></div>
@@ -170,7 +185,7 @@ switch ($_SESSION['idtipousu']) {
                                             <div class="mb-3"><label class="form-label" for="apellidoM"><strong>Apellido Materno</strong></label><input class="form-control" type="text" id="apellidoM" placeholder="Apellido materno" name="apellidoM" value="<?php echo $dataUsuario['apellidoM'] ?>"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" value="Perfil">Guardar cambios</button></div>
                                 </form>
                             </div>
                         </div>

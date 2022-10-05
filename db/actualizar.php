@@ -233,6 +233,47 @@ switch ($_POST['boton']) {
         }
 
         break;
+    case "Perfil":
+        $correo = $_POST['usuario'];
+        $nombre = $_POST['nombre'];
+        $apellidop = $_POST['apellidoP'];
+        $apellidom = $_POST['apellidoM'];
+        $password = $_POST['password'];
+        $tipousu = $_POST['tipousu'];
+        $idusu = $_POST['idusu'];
+
+        if ($password != "") {
+            $password = md5($password);
+            $consultaUsuarios = "UPDATE usuarios SET password = '$password' WHERE correo = '$correo'";
+            $resultadoUsuarios = $conexion->prepare($consultaUsuarios);
+            $resultadoUsuarios->execute();
+        }
+
+        switch ($tipousu) {
+            case 3:
+                $consulta = "UPDATE alumnos SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom' WHERE matricula = '$idusu'";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+                break;
+            case 2:
+                $consulta = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom' WHERE clave_empleado = '$idusu' AND tipo_empleado = 1";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+                break;
+            case 1:
+                $consulta = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom' WHERE clave_empleado = '$idusu' AND tipo_empleado = 2";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute();
+                break;
+        }
+        if ($resultado) {
+            $data = "success";
+            print json_encode($data);
+        } else {
+            $data = "error";
+            print json_encode($data);
+        }
+        break;
 
     default:
         # code...

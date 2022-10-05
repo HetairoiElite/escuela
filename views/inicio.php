@@ -162,7 +162,7 @@ session_start();
         ?>
 
         <script type="text/javascript" src="../js/cp.js"></script>
-
+        <script type="text/javascript" src="../js/editarPerfil.js"></script>
 
 
 </body>
