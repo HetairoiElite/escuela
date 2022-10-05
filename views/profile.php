@@ -194,7 +194,20 @@ switch ($_SESSION['idtipousu']) {
                                 <p class="text-primary m-0 fw-bold">Ajustes de contacto</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form id="formEditarDir" method="post">
+                                    <input type="hidden" name="boton" id="botonDir" value="DireccionUsu">
+                                    <input type="hidden" name="tipousu" id="tipousu" value="<?php echo $dataUsuario['tipousu'] ?>">
+                                    <input type="hidden" name="idusu" id="idusu" value="<?php
+                                                                                        switch ($_SESSION['idtipousu']) {
+                                                                                            case 1:
+                                                                                            case 2:
+                                                                                                echo $dataUsuario['clave_empleado'];
+                                                                                                break;
+                                                                                            case 3:
+                                                                                                echo $dataUsuario['matricula'];
+                                                                                                break;
+                                                                                        }
+                                                                                        ?>">
                                     <div class="input-group input-group-sm mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Código Postal:</span>

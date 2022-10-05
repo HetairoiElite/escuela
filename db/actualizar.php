@@ -274,6 +274,67 @@ switch ($_POST['boton']) {
             print json_encode($data);
         }
         break;
+    case "DireccionUsu":
+        $id = $_POST['idusu'];
+        $calle = $_POST['calle'];
+        $numero = $_POST['numero'];
+        $colonia = $_POST['colonia'];
+        $municipio = $_POST['municipio'];
+        $estado = $_POST['estado'];
+        $ciudad = $_POST['ciudad'];
+        $tipo_asentamiento = $_POST['tipo_asentamiento'];
+        $cp = $_POST['cp'];
+        $tipousu = $_POST['tipousu'];
+
+        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
+
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+
+        if ($resultado->rowCount() >= 1) {
+            $data = "warning";
+            print json_encode($data);
+        } else {
+            $consulta1 = "INSERT INTO direcciones (calle, numero, colonia, municipio, estado, ciudad, tipo_asentamiento, codigo_postal) VALUES (?,?,?,?,?,?,?,?)";
+
+            $resultado1 = $conexion->prepare($consulta1);
+            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $ciudad, $tipo_asentamiento, $cp]);
+        }
+
+        $consulta2 = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
+        $resultado2 = $conexion->prepare($consulta2);
+        $resultado2->execute();
+        $data = $resultado2->fetchAll(PDO::FETCH_ASSOC);
+
+        $id_direccion = $data[0]['id'];
+
+        switch ($tipousu) {
+            case 3:
+                $consulta3 = "UPDATE alumnos SET direccion = '$id_direccion' WHERE matricula = '$id'";
+                $resultado3 = $conexion->prepare($consulta3);
+                $resultado3->execute();
+                break;
+            case 2:
+                $consulta3 = "UPDATE empleado SET direccion = '$id_direccion' WHERE clave_empleado = '$id' AND tipo_empleado = 1";
+                $resultado3 = $conexion->prepare($consulta3);
+                $resultado3->execute();
+                break;
+            case 1:
+                $consulta3 = "UPDATE empleado SET direccion = '$id_direccion' WHERE clave_empleado = '$id' AND tipo_empleado = 2";
+                $resultado3 = $conexion->prepare($consulta3);
+                $resultado3->execute();
+                break;
+        }
+
+        if ($resultado3) {
+            $data = "success";
+            print json_encode($data);
+        } else {
+            $data = "error";
+            print json_encode($data);
+        }
+
+        break;
 
     default:
         # code...

@@ -41,5 +41,12 @@
                 "action": "openExternally"
             }
         },
+        {
+            "type": "chrome",
+            "name": "http://localhost:3030/escuela",
+            "request": "launch",
+            "url": "http://localhost:3030/escuela",
+            "webRoot": "${workspaceRoot}"
+        }
     ]
 }
