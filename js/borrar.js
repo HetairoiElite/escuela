@@ -184,14 +184,14 @@ $("[id^=formEliminarAlu]").submit(function (e) {
 $("[id^=formEliminarDoc]").submit(function (e) {
     e.preventDefault();
     console.log("borrar");
-    var alumno = $($(this)[0][1]).attr('id')
+    var docente = $($(this)[0][1]).attr('id')
 
-    boton = $("#boton" + alumno).val()
+    boton = $("#boton" + docente).val()
 
-    console.log(alumno);
+    console.log(docente);
     console.log(boton);
 
-    if (alumno == 0) {
+    if (docente == 0) {
         Swal.fire({
             icon: 'warning',
             title: 'Selecciona un docente!!',
@@ -226,6 +226,68 @@ $("[id^=formEliminarDoc]").submit(function (e) {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Docente eliminado!!',
+                                confirmButtonColor: "#3885f6",
+                                confirmButtonText: 'Confirmar'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.href = "inicio.php";
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+        });
+    }
+});
+
+
+
+$("[id^=formEliminarAd]").submit(function (e) {
+    e.preventDefault();
+    console.log("borrar");
+    var admin = $($(this)[0][1]).attr('id')
+
+    boton = $("#boton" + admin).val()
+
+    console.log(admin);
+    console.log(boton);
+
+    if (admin == 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Selecciona un Administrativo!!',
+        });
+        return false;
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: '¿Estás seguro de eliminar ese admin?',
+            showCancelButton: true,
+            confirmButtonColor: "#3885f6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "../db/eliminar.php",
+                    type: "POST",
+                    datatype: "json",
+                    data: { admin: admin, boton: boton },
+                    success: function (data) {
+                        console.log(data);
+                        console.log(data == "'error'");
+                        if (data == '"error"') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ha ocurrido un error',
+                            });
+                        } else {
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Administrativo eliminado!!',
                                 confirmButtonColor: "#3885f6",
                                 confirmButtonText: 'Confirmar'
                             }).then((result) => {

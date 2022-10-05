@@ -20,16 +20,16 @@
             <br />
 
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table id="datos_alumno" class="table my-0" id="dataTable">
+                <table id="datos_docente" class="table my-0" id="dataTable">
                     <thead>
                         <tr>
-                            <th>Clave Empleado</th>
+                            <th>Clave</th>
                             <th>Nombre completo</th>
                             <th>Teléfono</th>
                             <th>Usuario</th>
                             <th>Dirección</th>
-                            <th>Especialidad</th>
-                            <th>Cedula profecional</th>
+                            <th>Espcialidad</th>
+                            <th>Cedula</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -40,16 +40,19 @@
                         $conexion = $objeto->Conectar();
 
                         $consulta = "SELECT clave_empleado, concat(empleado.nombre, ' ', apellidoP, ' ', apellidoM)
-                                    as NombreCompleto, telefono, especialidad, cedula, usuarios.correo as usuario,
+                                    as NombreCompleto, telefono, usuarios.correo as usuario,
+                                    especialidad, cedula,
                                     concat(calle,':',numero, ' ', colonia, ' ',municipio, ' ', estado, ':', ' CP: ', codigo_postal) as direccion
                                     FROM empleado
                                     inner join usuarios on usuarios.id = empleado.usuario
                                     inner join direcciones on empleado.direccion = direcciones.id
                                     inner join tipo_usuarios on usuarios.tipousu = tipo_usuarios.id
-                                    ORDER BY usuarios.id";
+                                    Where tipo_empleado = 1
+                                    ORDER BY empleado.clave_empleado";
 
                         $resultado = $conexion->prepare($consulta);
                         $resultado->execute();
+
 
                         if ($resultado->rowCount() > 0) {
                             $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -114,9 +117,9 @@
                             <input type="text" name="apellidoM" id="apellidoM" class="form-control" placeholder="Apellido materno">
                             <br />
 
-                            <label for="telefono">Ingrese el número telefonico</label>
-                            <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Número de telefono">
-                            <br />
+                            <!--Telefono-->
+                            <label for="telefono">Ingrese el teléfono</label>
+                            <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Teléfono">
 
                             <!-- <label for="telefono">Ingrese el teléfono</label>
                             <input type="text" name="telefono" id="telefono" class="form-control">
@@ -125,7 +128,7 @@
 
                             <?php
 
-                            $consulta = "SELECT id, correo FROM usuarios WHERE tipousu = 3";
+                            $consulta = "SELECT id, correo FROM usuarios WHERE tipousu = 2";
 
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();
@@ -140,63 +143,74 @@
 
                                     while ($r = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
-                                        $consulta2 = "SELECT * FROM empleado inner join usuarios on empleado.usuario = usuarios.id WHERE usuarios.id = " . $r['id'];
-                                        $resultado2 = $conexion->prepare($consulta2);
-                                        $resultado2->execute();
 
-                                        if (!$resultado2->rowCount() >= 1) {
-                                            echo "<option value='" . $r['id'] . "'>" . $r['id'] . " : " .  $r['correo'] . "</option>";
-                                        }
+                                    ?>
+                                        <option value="<?php echo $r['id'] ?>"> <?php echo $r['id'] . " : " .  $r['correo'] ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
                             </div>
 
+
                             <label for="especialidad">Ingrese la especialidad</label>
                             <input type="text" name="especialidad" id="especialidad" class="form-control" placeholder="Especialidad">
-                            <br />
 
-                            <label for="cedula">Ingrese número de cedula profecional</label>
-                            <input type="text" name="cedula" id="cedula" class="form-control" placeholder="Cedula profecional">
-                            <br />
+                            <label for="cedula">Ingrese la cédula</label>
+                            <input type="number" name="cedula" id="cedula" class="form-control" placeholder="Cédula">
 
+                            <hr>
+                            
 
                             <div class="mb-1">
                                 <h6 class="text">Dirección</h6>
                                 <!-- Gradient divider -->
                                 <hr data-content="AND" class="hr-text">
                             </div>
-
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Código Postal:</span>
+                                </div>
+                                <input type="text" class="form-control" name="codigo_postal" id="codigo_postal">
+                            </div>
                             <div class="mb-3">
-                                <label for="cp" class="form-label">Código postal</label>
-                                <input type="number" name="cp" class="form-control" id="cp" placeholder="Código postal">
-
+                                <a href="javascript:void(0)" onclick="informacion_cp()" class="btn btn-primary">Obtener información Código Postal</a>
+                                <br />
                             </div>
 
-                            <div class="mb-3">
-                                <label for="tipoAsentamiento" class="form-label">Tipo de asentamiento</label>
-                                <input disabled readonly type="text" name="tipoAsentamiento" class="form-control" id="tipoAsentamiento" placeholder="Tipo de asentamiento">
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="colonia" class="form-label">Ingrese la colonia</label>
-                                <input type="text" name="colonia" class="form-control" id="colonia" placeholder="Colonia">
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="municipio" class="form-label">Municipio</label>
-                                <input disabled readonly type="text" name="municipio" class="form-control" id="municipio" placeholder="Municipio">
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="estado" class="form-label">Estado</label>
-                                <input disabled readonly type="text" name="estado" class="form-control" id="estado" placeholder="Estado">
-                            </div>
+                            <label for="cp_response">Código Postal Respuesta:</label>
+                            <input type="text" name="cp_response" id="cp_response" class="form-control" disabled readonly>
+                            <input type="hidden" name="cp_responseh" id="cp_responseh">
+                            <br>
 
-                            <div class="mb-3">
-                                <label for="ciudad" class="form-label>">Ciudad</label>
-                                <input disabled readonly type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ciudad">
-                            </div>
+                            <label for="list_colonias">Colonias:</label>
+                            <select name="list_colonias" id="list_colonias" class="form-control">
+                                <option>Seleccione</option>
+                            </select>
+                            <br>
+
+                            <label for="tipo_asentamiento">Tipo Asentamiento:</label>
+                            <input type="text" name="tipo_asentamiento" id="tipo_asentamiento" class="form-control" disabled readonly>
+                            <input type="hidden" name="tipo_asentamientoh" id="tipo_asentamientoh">
+                            <br>
+
+                            <label for="municipio">Municipio:</label>
+                            <input type="text" name="municipio" id="municipio" class="form-control" disabled readonly>
+                            <input type="hidden" name="municipioh" id="municipioh">
+                            <br>
+
+                            <label for="estado">Estado:</label>
+                            <input type="text" name="estado" id="estado" class="form-control" disabled readonly>
+                            <input type="hidden" name="estadoh" id="estadoh">
+                            <br>
+
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" name="ciudad" id="ciudad" class="form-control" disabled readonly>
+                            <input type="hidden" name="ciudadh" id="ciudadh">
+                            <br>
 
                             <div class="mb-3">
 
@@ -210,7 +224,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id_usuario" id="id_usuario">
+                        <input type="hidden" name="id_docente" id="id_docente">
                         <input type="hidden" name="operacion" id="operacion">
                         <input type="hidden" name="boton" id="boton" value="Docentes">
 

@@ -15,12 +15,18 @@ function informacion_cp() {
             if (!copomex.error) { //si NO hubo un error
 
                 $("#cp_response").val(copomex.response.cp); //ingresamos la respuesta del cp, en el input destino
+                $("#cp_responseh").val(copomex.response.cp);
+
                 $("#tipo_asentamiento").val(copomex.response
                     .tipo_asentamiento); //ingresamos la respuesta del tipo de asentamiento, en el input destino
+                $("#tipo_asentamientoh").val(copomex.response.tipo_asentamiento)
                 $("#municipio").val(copomex.response
                     .municipio); //ingresamos la respuesta del municipio, en el input destino
+                $("#municipioh").val(copomex.response.municipio)
                 $("#estado").val(copomex.response.estado); //ingresamos la respuesta del estado, en el input destino
+                $("#estadoh").val(copomex.response.estado)
                 $("#ciudad").val(copomex.response.ciudad); //ingresamos la respuesta de la ciudad, en el input destino
+                $("#ciudadh").val(copomex.response.ciudad)
                 $("#pais").val(copomex.response.pais); //ingresamos la respuesta del pais, en el input destino
 
                 $("#list_colonias").html(

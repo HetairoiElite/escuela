@@ -95,6 +95,9 @@ session_start();
                     case 'Docentes':
                         include_once 'docentes.php';
                         break;
+                    case 'Administrativos':
+                        include_once 'administrativos.php';
+                        break;
 
                     default:
                         include_once 'dashboard.php';

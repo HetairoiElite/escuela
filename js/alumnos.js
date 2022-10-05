@@ -63,7 +63,7 @@ $(document).on('submit', '#formulario', function (event) {
                     }).then((result) => {
                         if (result.value) {
                             $('#formulario')[0].reset();
-                            $('#modalUsuario').modal('hide');
+                            $('#modalAlumno').modal('hide');
                             //dataTable.ajax.reload();
                             window.location.reload();
                         }
@@ -107,34 +107,55 @@ $(document).on('submit', '#formulario', function (event) {
 });
 
 
-$("[id^=formEditarMat]").submit(function (e) {
+$("[id^=formEditarAlu]").submit(function (e) {
     e.preventDefault();
-    var id_materia = $($(this)[0][1]).attr("id");
-    console.log(id_materia);
-    boton = $("#boton" + id_materia).val()
+    var id_alumno = $($(this)[0][1]).attr("id");
+    console.log(id_alumno);
+    boton = $("#boton" + id_alumno).val()
     $.ajax({
         url: "../db/buscar.php",
         method: "POST",
         data: {
-            id: id_materia,
+            id: id_alumno,
             boton: boton
         },
         dataType: "json",
         success: function (data) {
             console.log(data);
-            $('#modalMateria').modal('show');
+            $('#modalAlumno').modal('show');
             $('#nombre').val(data.nombre);
             $('#apellidoP').val(data.apellidoP);
             $('#apellidoM').val(data.apellidoM);
             $('#telefono').val(data.telefono);
-            $('#id_usuario').val(data.id_usuario);
+            $('#usuario').val(data.id_usuario);
+            console.log(data.id_usuario);
             $('#direccion').val(data.direccion);
-            $('#grado_grupo').val(data.grado_grupo);
-            $('.modal-title').text("Editar Materia");
-            $('#id_alumno').val(id_materia);
+            $('#gp').val(data.grado_grupo);
+
+            $("#cp_response").val(data.codigo_postal);
+            $("#cp_responseh").val(data.codigo_postal); //ingresamos la respuesta del cp, en el input destino
+
+            $("#tipo_asentamiento").val(data.tipo_asentamiento); //ingresamos la respuesta del tipo de asentamiento, en el input destino
+            $("#tipo_asentamientoh").val(data.tipo_asentamiento)
+            $("#municipio").val(data.municipio); //ingresamos la respuesta del municipio, en el input destino
+            $("#municipioh").val(data.municipio)
+            $("#estado").val(data.estado); //ingresamos la respuesta del estado, en el input destino
+            $("#estadoh").val(data.estado)
+            $("#ciudad").val(data.ciudad); //ingresamos la respuesta de la ciudad, en el input destino
+            $("#ciudadh").val(data.ciudad);
+            $("#list_colonias").html(
+                '');
+            $("#list_colonias").append('<option>' + data.colonia +
+                '</option>');
+            $("#calle").val(data.calle); //ingresamos la respuesta de la calle, en el input destino
+            $("#numero").val(data.numero);
+
+
+            $('.modal-title').text("Editar Alumnos");
+            $('#id_alumno').val(id_alumno);
             $('#action').val("Editar");
             $('#operacion').val("Editar");
-            $('#boton').val("Alumonos");
+            $('#boton').val("Alumnos");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);

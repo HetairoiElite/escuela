@@ -47,21 +47,22 @@ switch ($_POST['boton']) {
         break;
     case 'Alumnos':
 
-        $id = $_POST['ida'];
+        $id = $_POST['id_alumno'];
         $nombre = $_POST['nombre'];
-        $apellidop = $_POST['apellidop'];
-        $apellidom = $_POST['apellidom'];
+        $apellidop = $_POST['apellidoP'];
+        $apellidom = $_POST['apellidoM'];
         $telefono = $_POST['telefono'];
         $usuario = $_POST['usuario'];
         $gradogrupo = $_POST['gp'];
 
-
         $calle = $_POST['calle'];
         $numero = $_POST['numero'];
-        $colonia = $_POST['colonia'];
-        $municipio = $_POST['municipio'];
-        $estado = $_POST['estado'];
-        $cp = $_POST['cp'];
+        $colonia = $_POST['list_colonias'];
+        $municipio = $_POST['municipioh'];
+        $estado = $_POST['estadoh'];
+        $ciudad = isset($_POST['ciudadh']) ? $_POST['ciudadh'] : "";
+        $tipo_asentamiento = $_POST['tipo_asentamientoh'];
+        $cp = $_POST['cp_responseh'];
 
         $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
@@ -81,37 +82,41 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "INSERT INTO alumnos (matricula,nombre,apellidoP,apellidoM,telefono,id_usuario,direccion,grado_grupo) VALUES (null,?,?,?,?,?,?,?)";
+        $consulta3 = "UPDATE alumnos SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', direccion = '$direccion', grado_grupo = '$gradogrupo' WHERE matricula = '$id'";
+
         $resultado3 = $conexion->prepare($consulta3);
-        $resultado3->execute([$nombre, $apellidop, $apellidom, $telefono, $usuario, $direccion, $gradogrupo]);
+        $resultado3->execute();
 
 
         if ($resultado3) {
-            print json_encode(['resultado' => 'succes']);
+            $data = "success";
+            print json_encode($data);
         } else {
-            print json_encode(['resultado' => 'error']);
+            $data = "error";
+            print json_encode($data);
         }
 
         break;
 
     case "Docentes":
 
+        $id = $_POST['id_docente'];
         $nombre = $_POST['nombre'];
-        $apellidop = $_POST['apellidop'];
-        $apellidom = $_POST['apellidom'];
+        $apellidop = $_POST['apellidoP'];
+        $apellidom = $_POST['apellidoM'];
         $telefono = $_POST['telefono'];
+        $usuario = $_POST['usuario'];
         $especialidad = $_POST['especialidad'];
         $cedula = $_POST['cedula'];
-        $usuario = $_POST['usuario'];
-        $tipo_empleado = 1;
-
 
         $calle = $_POST['calle'];
         $numero = $_POST['numero'];
-        $colonia = $_POST['colonia'];
-        $municipio = $_POST['municipio'];
-        $estado = $_POST['estado'];
-        $cp = $_POST['cp'];
+        $colonia = $_POST['list_colonias'];
+        $municipio = $_POST['municipioh'];
+        $estado = $_POST['estadoh'];
+        $ciudad = isset($_POST['ciudadh']) ? $_POST['ciudadh'] : "";
+        $tipo_asentamiento = $_POST['tipo_asentamientoh'];
+        $cp = $_POST['cp_responseh'];
 
         $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
@@ -131,33 +136,38 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "INSERT INTO empleado (clave_empleado,nombre,apellidoP,apellidoM,telefono,especialidad,cedula,direccion,usuario,tipo_empleado) VALUES (null,?,?,?,?,?,?,?,?,?)";
+        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion' WHERE clave_empleado = '$id'";
+
         $resultado3 = $conexion->prepare($consulta3);
-        $resultado3->execute([$nombre, $apellidop, $apellidom, $telefono, $especialidad, $cedula, $direccion, $usuario, $tipo_empleado]);
+        $resultado3->execute();
+
 
         if ($resultado3) {
-            print json_encode(['resultado' => 'succes']);
+            $data = "success";
+            print json_encode($data);
         } else {
-            print json_encode(['resultado' => 'error']);
+            $data = "error";
+            print json_encode($data);
         }
         break;
     case "Administrativos":
+        $id = $_POST['id_admin'];
         $nombre = $_POST['nombre'];
-        $apellidop = $_POST['apellidop'];
-        $apellidom = $_POST['apellidom'];
+        $apellidop = $_POST['apellidoP'];
+        $apellidom = $_POST['apellidoM'];
         $telefono = $_POST['telefono'];
+        $usuario = $_POST['usuario'];
         $especialidad = $_POST['especialidad'];
         $cedula = $_POST['cedula'];
-        $usuario = $_POST['usuario'];
-        $tipo_empleado = 2;
-
 
         $calle = $_POST['calle'];
         $numero = $_POST['numero'];
-        $colonia = $_POST['colonia'];
-        $municipio = $_POST['municipio'];
-        $estado = $_POST['estado'];
-        $cp = $_POST['cp'];
+        $colonia = $_POST['list_colonias'];
+        $municipio = $_POST['municipioh'];
+        $estado = $_POST['estadoh'];
+        $ciudad = isset($_POST['ciudadh']) ? $_POST['ciudadh'] : "";
+        $tipo_asentamiento = $_POST['tipo_asentamientoh'];
+        $cp = $_POST['cp_responseh'];
 
         $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
@@ -177,14 +187,18 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "INSERT INTO empleado (clave_empleado,nombre,apellidoP,apellidoM,telefono,especialidad,cedula,direccion,usuario,tipo_empleado) VALUES (null,?,?,?,?,?,?,?,?,?)";
+        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion' WHERE clave_empleado = '$id'";
+
         $resultado3 = $conexion->prepare($consulta3);
-        $resultado3->execute([$nombre, $apellidop, $apellidom, $telefono, $especialidad, $cedula, $direccion, $usuario, $tipo_empleado]);
+        $resultado3->execute();
+
 
         if ($resultado3) {
-            print json_encode(['resultado' => 'succes']);
+            $data = "success";
+            print json_encode($data);
         } else {
-            print json_encode(['resultado' => 'error']);
+            $data = "error";
+            print json_encode($data);
         }
         break;
 

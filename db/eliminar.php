@@ -61,10 +61,10 @@ switch ($_POST['boton']) {
         $resultado->execute();
 
         if ($resultado->rowCount() > 1) {
-            $data = "warning";  
+            $data = "warning";
             print json_encode($data);
         } else {
-            $consulta1 = "DELETE FROM materias WHERE matricula = '$materia'";
+            $consulta1 = "DELETE FROM alumnos WHERE matricula = '$alumno'";
 
             $resultado1 = $conexion->prepare($consulta1);
             $resultado1->execute();
@@ -75,23 +75,45 @@ switch ($_POST['boton']) {
         break;
 
     case 'Docentes':
-        $alumno = isset($_POST['docente']) ? $_POST['docente'] : '';
-    
+        $docente = isset($_POST['docente']) ? $_POST['docente'] : '';
+
         $consulta = "SELECT * FROM empleado 
-        WHERE clave_empleado = '$alumno'";
-    
+        WHERE clave_empleado = '$docente'";
+
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
-    
+
         if ($resultado->rowCount() > 1) {
-            $data = "warning";  
+            $data = "warning";
             print json_encode($data);
         } else {
-            $consulta1 = "DELETE FROM materias WHERE clave_empleado = '$materia'";
-    
+            $consulta1 = "DELETE FROM empleado WHERE clave_empleado = '$docente'";
+
             $resultado1 = $conexion->prepare($consulta1);
             $resultado1->execute();
-    
+
+            $data = "success";
+            print json_encode($data);
+        }
+        break;
+    case 'Administrativos':
+        $admin = isset($_POST['admin']) ? $_POST['admin'] : '';
+
+        $consulta = "SELECT * FROM empleado 
+            WHERE clave_empleado = '$admin'";
+
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+
+        if ($resultado->rowCount() > 1) {
+            $data = "warning";
+            print json_encode($data);
+        } else {
+            $consulta1 = "DELETE FROM empleado WHERE clave_empleado = '$admin'";
+
+            $resultado1 = $conexion->prepare($consulta1);
+            $resultado1->execute();
+
             $data = "success";
             print json_encode($data);
         }

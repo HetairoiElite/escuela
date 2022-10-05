@@ -114,6 +114,10 @@
                             <input type="text" name="apellidoM" id="apellidoM" class="form-control" placeholder="Apellido materno">
                             <br />
 
+                            <!--Telefono-->
+                            <label for="telefono">Ingrese el teléfono</label>
+                            <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Teléfono">
+
                             <!-- <label for="telefono">Ingrese el teléfono</label>
                             <input type="text" name="telefono" id="telefono" class="form-control">
                             <br /> -->
@@ -136,13 +140,10 @@
 
                                     while ($r = $resultado->fetch(PDO::FETCH_ASSOC)) {
 
-                                        $consulta2 = "SELECT * FROM alumnos inner join usuarios on alumnos.id_usuario = usuarios.id WHERE usuarios.id = " . $r['id'];
-                                        $resultado2 = $conexion->prepare($consulta2);
-                                        $resultado2->execute();
 
-                                        if (!$resultado2->rowCount() >= 1) {
-                                            echo "<option value='" . $r['id'] . "'>" . $r['id'] . " : " .  $r['correo'] . "</option>";
-                                        }
+                                    ?>
+                                        <option value="<?php echo $r['id'] ?>"> <?php echo $r['id'] . " : " .  $r['correo'] ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -193,6 +194,7 @@
 
                             <label for="cp_response">Código Postal Respuesta:</label>
                             <input type="text" name="cp_response" id="cp_response" class="form-control" disabled readonly>
+                            <input type="hidden" name="cp_responseh" id="cp_responseh">
                             <br>
 
                             <label for="list_colonias">Colonias:</label>
@@ -203,18 +205,22 @@
 
                             <label for="tipo_asentamiento">Tipo Asentamiento:</label>
                             <input type="text" name="tipo_asentamiento" id="tipo_asentamiento" class="form-control" disabled readonly>
+                            <input type="hidden" name="tipo_asentamientoh" id="tipo_asentamientoh">
                             <br>
 
                             <label for="municipio">Municipio:</label>
                             <input type="text" name="municipio" id="municipio" class="form-control" disabled readonly>
+                            <input type="hidden" name="municipioh" id="municipioh">
                             <br>
 
                             <label for="estado">Estado:</label>
                             <input type="text" name="estado" id="estado" class="form-control" disabled readonly>
+                            <input type="hidden" name="estadoh" id="estadoh">
                             <br>
 
                             <label for="ciudad">Ciudad:</label>
                             <input type="text" name="ciudad" id="ciudad" class="form-control" disabled readonly>
+                            <input type="hidden" name="ciudadh" id="ciudadh">
                             <br>
 
                             <div class="mb-3">
@@ -229,7 +235,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="id_usuario" id="id_usuario">
+                        <input type="hidden" name="id_alumno" id="id_alumno">
                         <input type="hidden" name="operacion" id="operacion">
                         <input type="hidden" name="boton" id="boton" value="Alumnos">
 
