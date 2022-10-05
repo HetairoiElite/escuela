@@ -64,17 +64,17 @@ switch ($_POST['boton']) {
         $tipo_asentamiento = $_POST['tipo_asentamientoh'];
         $cp = $_POST['cp_responseh'];
 
-        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento'  AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 
         if (!$resultado->rowCount() >= 1) {
-            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado,codigo_postal) VALUES (null,?,?,?,?,?,?)";
+            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado, ciudad, tipo_asentamiento, codigo_postal) VALUES (null,?,?,?,?,?,?,?,?)";
             $resultado1 = $conexion->prepare($consulta1);
-            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $cp]);
+            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $ciudad, $tipo_asentamiento, $cp]);
         }
 
-        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
         $resultado2 = $conexion->prepare($consulta2);
         $resultado2->execute();
 
@@ -118,17 +118,17 @@ switch ($_POST['boton']) {
         $tipo_asentamiento = $_POST['tipo_asentamientoh'];
         $cp = $_POST['cp_responseh'];
 
-        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 
         if (!$resultado->rowCount() >= 1) {
-            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado,codigo_postal) VALUES (null,?,?,?,?,?,?)";
+            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado,ciudad,tipo_asentamiento,codigo_postal) VALUES (null,?,?,?,?,?,?,?,?)";
             $resultado1 = $conexion->prepare($consulta1);
-            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $cp]);
+            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $ciudad, $tipo_asentamiento, $cp]);
         }
 
-        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
         $resultado2 = $conexion->prepare($consulta2);
         $resultado2->execute();
 
@@ -169,17 +169,17 @@ switch ($_POST['boton']) {
         $tipo_asentamiento = $_POST['tipo_asentamientoh'];
         $cp = $_POST['cp_responseh'];
 
-        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta = "SELECT * FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 
         if (!$resultado->rowCount() >= 1) {
-            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado,codigo_postal) VALUES (null,?,?,?,?,?,?)";
+            $consulta1 = "INSERT INTO direcciones (id,calle,numero,colonia,municipio,estado, ciudad, tipo_asentamiento, codigo_postal) VALUES (null,?,?,?,?,?,?,?,?)";
             $resultado1 = $conexion->prepare($consulta1);
-            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $cp]);
+            $resultado1->execute([$calle, $numero, $colonia, $municipio, $estado, $ciudad, $tipo_asentamiento, $cp]);
         }
 
-        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND codigo_postal = '$cp'";
+        $consulta2 = "SELECT id FROM direcciones WHERE calle = '$calle' AND numero = '$numero' AND colonia = '$colonia' AND municipio = '$municipio' AND estado = '$estado' AND ciudad = '$ciudad' AND tipo_asentamiento = '$tipo_asentamiento' AND codigo_postal = '$cp'";
         $resultado2 = $conexion->prepare($consulta2);
         $resultado2->execute();
 

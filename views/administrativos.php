@@ -42,7 +42,7 @@
                         $consulta = "SELECT clave_empleado, concat(empleado.nombre, ' ', apellidoP, ' ', apellidoM)
                                     as NombreCompleto, telefono, usuarios.correo as usuario,
                                     especialidad, cedula,
-                                    concat(calle,':',numero, ' ', colonia, ' ',municipio, ' ', estado, ':', ' CP: ', codigo_postal) as direccion
+                                    concat(calle,':',numero, ' ', colonia, ' ',municipio, ' ', estado,' ',ciudad, ' ',tipo_asentamiento, ':', ' CP: ', codigo_postal) as direccion
                                     FROM empleado
                                     inner join usuarios on usuarios.id = empleado.usuario
                                     inner join direcciones on empleado.direccion = direcciones.id

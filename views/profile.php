@@ -2,6 +2,27 @@
 include_once '../db/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
+
+switch ($_SESSION['idtipousu']) {
+    case 1:
+        $tipousu = $_SESSION['idtipousu'];
+        $idUser = $_SESSION['idUser'];
+        $consulta = "SELECT * FROM usuarios inner join empleado on 
+        usuarios.id = empleado.usuario where usuarios.tipousu = $tipousu and usuarios.id = $idUser";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataUsuario = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $idDireccion = $dataUsuario[0]['direccion'];
+
+        $consulta = "SELECT * FROM direcciones where id = $idDireccion";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dataDireccion = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+}
+
+
 ?>
 
 
@@ -10,13 +31,13 @@ $conexion = $objeto->Conectar();
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Profile</h3>
         <div class="row mb-3">
-            <div class="col-lg-4">
-                <div class="card mb-3">
+            <!-- <div class="col-lg-4">
+                <!-- <div class="card mb-3">
                     <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="assets/img/dogs/image2.jpeg" width="160" height="160">
                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Change Photo</button></div>
                     </div>
-                </div>
-                <div class="card shadow mb-4">
+                </div> -->
+            <!-- <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="text-primary fw-bold m-0">Projects</h6>
                     </div>
@@ -42,9 +63,9 @@ $conexion = $objeto->Conectar();
                             <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="visually-hidden">100%</span></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
+                </div> -->
+            <!-- </div> -->
+            <div class="col-lg-12">
                 <div class="row mb-3 d-none">
                     <div class="col">
                         <div class="card text-white bg-primary shadow">
@@ -75,6 +96,10 @@ $conexion = $objeto->Conectar();
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div class="row">
                     <div class="col">
                         <div class="card shadow mb-3">
@@ -82,24 +107,27 @@ $conexion = $objeto->Conectar();
                                 <p class="text-primary m-0 fw-bold">User Settings</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form id="formEditarPerfil" method="post">
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username"></div>
+                                            <div class="mb-3"><label class="form-label" for="usuario"><strong>Usuario</strong></label><input class="form-control" type="text" id="usuario" placeholder="user@example.com" name="usuario"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
+                                            <div class="mb-3"><label class="form-label" for="password"><strong>Email Address</strong></label><input class="form-control" type="password" id="password" placeholder="Contraseña" name="password"></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
+                                            <div class="mb-3"><label class="form-label" for="nombre"><strong>Nombre</strong></label><input class="form-control" type="text" id="nombre" placeholder="Nombre" name="nombre"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
+                                            <div class="mb-3"><label class="form-label" for="apellidoP"><strong>Apellido Paterno</strong></label><input class="form-control" type="text" id="apellidoP" placeholder="Apellido paterno" name="apellidoP"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3"><label class="form-label" for="apellidoM"><strong>Apellido Materno</strong></label><input class="form-control" type="text" id="apellidoM" placeholder="Apellido materno" name="apellidoM"></div>
                                         </div>
                                     </div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
                                 </form>
                             </div>
                         </div>
@@ -109,51 +137,89 @@ $conexion = $objeto->Conectar();
                             </div>
                             <div class="card-body">
                                 <form>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Código Postal:</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="codigo_postal" id="codigo_postal">
+                                    </div>
+                                    <div class="mb-3">
+                                        <a href="javascript:void(0)" onclick="informacion_cp()" class="btn btn-primary">Obtener información Código Postal</a>
+                                        <br />
+                                    </div>
 
-                                    <!-- Continuacion del formulario para el codigo postal :Omar-->
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col">
                                             <div class="mb-3">
-                                                <label class="form-label" for="cp">
-                                                    <strong>Codigo Postal</strong>
-                                                </label>
-                                                <input class="form-control" type="text" id="cp" name="cp">
-
+                                                <label for="cp_response">Código Postal Respuesta:</label>
+                                                <input type="text" name="cp_response" id="cp_response" class="form-control" disabled readonly>
+                                                <input type="hidden" name="cp_responseh" id="cp_responseh">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="list_colonias">Colonias:</label>
+                                                <select name="list_colonias" id="list_colonias" class="form-control">
+                                                    <option>Seleccione</option>
+                                                </select>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="tipo_asentamiento">Tipo Asentamiento:</label>
+                                                <input type="text" name="tipo_asentamiento" id="tipo_asentamiento" class="form-control" disabled readonly>
+                                                <input type="hidden" name="tipo_asentamientoh" id="tipo_asentamientoh">
+                                                <br>
 
                                             </div>
+                                        </div>
+                                        <div class="col">
                                             <div class="mb-3">
-                                                <button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button>
+                                                <label for="municipio">Municipio:</label>
+                                                <input type="text" name="municipio" id="municipio" class="form-control" disabled readonly>
+                                                <input type="hidden" name="municipioh" id="municipioh">
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="estado">Estado:</label>
+                                                <input type="text" name="estado" id="estado" class="form-control" disabled readonly>
+                                                <input type="hidden" name="estadoh" id="estadoh">
+                                                <br>
+
                                             </div>
                                         </div>
                                     </div>
 
-
-
-                                    <!--Codigo John -->
-
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="city"><strong>Municipio</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
+                                            <div class="mb-3">
+                                                <label for="ciudad">Ciudad:</label>
+                                                <input type="text" name="ciudad" id="ciudad" class="form-control" disabled readonly>
+                                                <input type="hidden" name="ciudadh" id="ciudadh">
+                                                <br>
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="country"><strong>Pais</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
+                                            <div class="mb-3">
+
+                                                <label for="calle" class="form-label">Calle</label>
+                                                <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="numero" class="form-label">Número</label>
+                                                <input type="number" name="numero" class="form-control" id="numero" placeholder="Número">
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="city"><strong>Estado</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="mb-3"><label class="form-label" for="country"><strong>Ciudad</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
-                                        </div>
-
-
-                                    </div>
-
-
-                                    <div class="mb-3"></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
                                 </form>
 
 
@@ -163,6 +229,6 @@ $conexion = $objeto->Conectar();
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

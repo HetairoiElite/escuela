@@ -40,7 +40,7 @@
 
                         $consulta = "SELECT matricula, concat(alumnos.nombre, ' ', apellidoP, ' ', apellidoM)
                                     as NombreCompleto, telefono, usuarios.correo as usuario,
-                                    concat(calle,':',numero, ' ', colonia, ' ',municipio, ' ', estado, ':', ' CP: ', codigo_postal) as direccion,
+                                    concat(calle,':',numero, ' ', colonia, ' ',municipio, ' ', estado,' ', ciudad,' ', tipo_asentamiento, ':', ' CP: ', codigo_postal) as direccion,
                                     concat(grado, '', grupo) as gradogrupo FROM alumnos
                                     inner join usuarios on usuarios.id = alumnos.id_usuario
                                     inner join direcciones on alumnos.direccion = direcciones.id

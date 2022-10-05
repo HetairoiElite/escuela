@@ -59,7 +59,7 @@ $(document).on('submit', '#formulario', function (event) {
                 success: function (data) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Docente registrado correctamente.'
+                        title: 'Administrativo registrado correctamente.'
                     }).then((result) => {
                         if (result.value) {
                             $('#formulario')[0].reset();
@@ -81,11 +81,11 @@ $(document).on('submit', '#formulario', function (event) {
 
                     Swal.fire({
                         icon: 'success',
-                        title: 'Docente actualizado correctamente.'
+                        title: 'Administrativo actualizado correctamente.'
                     }).then((result) => {
                         if (result.value) {
                             $('#formulario')[0].reset();
-                            $('#modalDocente').modal('hide');
+                            $('#modalAdmin').modal('hide');
                             //dataTable.ajax.reload();
                             window.location.reload();
                         }

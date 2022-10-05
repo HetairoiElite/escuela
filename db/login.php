@@ -9,7 +9,7 @@ $usuario = (isset($_POST['usuario'])) ? $_POST['usuario'] : '';
 $password = md5((isset($_POST['password'])) ? $_POST['password'] : '');
 //encriptas la  contraseña
 //$pass=md5($password);
-$consulta = "SELECT usuarios.id as idUser, nombre FROM usuarios inner join tipo_usuarios on tipousu = tipo_usuarios.id
+$consulta = "SELECT usuarios.id as idUser, nombre, tipo_usuarios.id as idtipousu FROM usuarios inner join tipo_usuarios on tipousu = tipo_usuarios.id
  WHERE correo='$usuario' AND password='$password'";
 
 
@@ -22,6 +22,7 @@ if ($resultado->rowCount() >= 1) {
 	$_SESSION['idUser'] = $data[0]['idUser'];
 	$_SESSION['nusuario'] = $usuario;
 	$_SESSION['tipousu'] = $data[0]['nombre'];
+	$_SESSION['idtipousu'] = $data[0]['idtipousu'];
 	$_SESSION['pagina'] = "Nada";
 
 	if ($_SESSION['tipousu'] != "Alumno") {
