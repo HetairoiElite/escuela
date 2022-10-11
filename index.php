@@ -57,7 +57,7 @@
 
     <script type="text/javascript" src="js/jquery/popper.min.js"></script>
 
-
+    
     <!--agregamos jquery-->
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
     <!--agregamos  el  sweetalert -->

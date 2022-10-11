@@ -3,14 +3,14 @@ $(document).ready(function () {
 
     $("#botonCrear").click(function () {
         $("#formulario")[0].reset();
-        $(".modal-title").text("Crear Docente");
+        $(".modal-title").text("Crear Adminisrativo");
         $("#action").val("Crear");
         $("#operacion").val("Crear");
         $("#imagen_subida").html("");
     });
 
 
-    $('#datos_docente').DataTable({
+    $('#datos_admin').DataTable({
         language: {
             "decimal": "",
             "emptyTable": "No hay datos",
@@ -63,7 +63,7 @@ $(document).on('submit', '#formulario', function (event) {
                     }).then((result) => {
                         if (result.value) {
                             $('#formulario')[0].reset();
-                            $('#modalDocente').modal('hide');
+                            $('#modalAdmin').modal('hide');
                             //dataTable.ajax.reload();
                             window.location.reload();
                         }

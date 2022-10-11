@@ -19,7 +19,7 @@ session_start();
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-success p-0">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion color-rojo p-0">
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"><img src="../assets/img/login/logo.png" alt="" width="50px"></i></div>
                     <div class="sidebar-brand-text mx-3"><span>Escuelita</span></div>
@@ -29,7 +29,7 @@ session_start();
 
                 <ul id="accordionSidebar" class="navbar-nav text-light">
 
-                    <li class="nav-item"><a id="Dashboard" class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a id="Tablero" class="nav-link " href="#"><i class="fas fa-tachometer-alt"></i><span>Tablero</span></a></li>
                     <li class="nav-item"><a id="Perfil" class="nav-link" href="#"><i class="fas fa-address-card"></i><span>Perfil</span></a></li>
 
                     <li class="nav-item"><a id="Usuarios" class="nav-link" href="#"><i class="fas fa-user"></i><span>Usuarios</span></a></li>
@@ -77,8 +77,8 @@ session_start();
                 <?php
                 switch ($_SESSION['pagina']) {
 
-                    case 'Dashboard':
-                        include_once 'dashboard.php';
+                    case 'Tablero':
+                        include_once 'tablero.php';
                         break;
                     case 'Perfil':
                         include_once 'profile.php';
@@ -100,7 +100,7 @@ session_start();
                         break;
 
                     default:
-                        include_once 'dashboard.php';
+                        include_once 'tablero.php';
                         break;
                 }
                 ?>

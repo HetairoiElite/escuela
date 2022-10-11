@@ -128,7 +128,7 @@
 
                             <?php
 
-                            $consulta = "SELECT id, correo FROM usuarios WHERE tipousu = 2";
+                            $consulta = "SELECT id, correo FROM usuarios WHERE tipousu = 1";
 
                             $resultado = $conexion->prepare($consulta);
                             $resultado->execute();

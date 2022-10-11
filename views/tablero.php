@@ -6,7 +6,7 @@ $conexion = $objeto->Conectar();
 
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0">Dashboard</h3>
+        <h3 class="text-dark mb-0">Tablero</h3>
     </div>
     <div class="row">
         <div class="col-md-6 col-xl-3 mb-4">
@@ -73,7 +73,7 @@ $conexion = $objeto->Conectar();
                                             $resultado->execute();
                                             echo $resultado->rowCount();
 
-                                            ?>  
+                                            ?>
                                         </span></div>
                                 </div>
                                 <div class="col">

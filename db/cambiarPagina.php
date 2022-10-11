@@ -3,8 +3,8 @@
 session_start();
 
 switch ($_POST['pagina']) {
-    case 'Dashboard':
-        $_SESSION['pagina'] = 'Dashboard';
+    case 'Tablero':
+        $_SESSION['pagina'] = 'Tablero';
         print json_encode('success');
         break;
     case 'Perfil':
