@@ -6,6 +6,8 @@
         </div>
         <div class="card-body">
 
+
+
             <div class="row">
                 <div class="col-2 offset-10">
                     <div class="text-center">
@@ -138,17 +140,7 @@
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Selecciona un usuario</label>
                                 <select class="form-select" id="usuario" name="usuario" aria-label="Default select example">
-                                    <option selected value="0">Usuario</option>
-                                    <?php
-
-                                    while ($r = $resultado->fetch(PDO::FETCH_ASSOC)) {
-
-
-                                    ?>
-                                        <option value="<?php echo $r['id'] ?>"> <?php echo $r['id'] . " : " .  $r['correo'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
+                                    <option selected value="0">Seleccione un usuario</option>
                                 </select>
                             </div>
 

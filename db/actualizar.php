@@ -82,7 +82,7 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "UPDATE alumnos SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', direccion = '$direccion', grado_grupo = '$gradogrupo' WHERE matricula = '$id'";
+        $consulta3 = "UPDATE alumnos SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', direccion = '$direccion',id_usuario = '$usuario', grado_grupo = '$gradogrupo' WHERE matricula = '$id'";
 
         $resultado3 = $conexion->prepare($consulta3);
         $resultado3->execute();
@@ -136,7 +136,7 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion' WHERE clave_empleado = '$id'";
+        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion', usuario = '$usuario' WHERE clave_empleado = '$id'";
 
         $resultado3 = $conexion->prepare($consulta3);
         $resultado3->execute();
@@ -187,7 +187,7 @@ switch ($_POST['boton']) {
 
         $direccion = $data[0]['id'];
 
-        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion' WHERE clave_empleado = '$id'";
+        $consulta3 = "UPDATE empleado SET nombre = '$nombre', apellidoP = '$apellidop', apellidoM = '$apellidom', telefono = '$telefono', especialidad = '$especialidad', cedula = '$cedula', direccion = '$direccion', usuario = '$usuario' WHERE clave_empleado = '$id'";
 
         $resultado3 = $conexion->prepare($consulta3);
         $resultado3->execute();

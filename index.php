@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="js/plugins/sweetalert2.min.css">
+    <link rel="shortcut icon" href="assets/img/login/logo.png">
 </head>
 
-<body class="bg-gradient-success">
+<body class="bg-gradient-danger">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
@@ -57,7 +58,7 @@
 
     <script type="text/javascript" src="js/jquery/popper.min.js"></script>
 
-    
+
     <!--agregamos jquery-->
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
     <!--agregamos  el  sweetalert -->

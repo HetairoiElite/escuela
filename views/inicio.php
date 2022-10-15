@@ -9,12 +9,13 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Brand</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="../css/sb-admin-2.min.css">
     <link rel="stylesheet" href="../css/dataTables.bootstrap4.min.css">
+    <link rel="shortcut icon" href="../assets/img/login/logo.png">
 </head>
 
 <body id="page-top">
@@ -81,7 +82,7 @@ session_start();
                         include_once 'tablero.php';
                         break;
                     case 'Perfil':
-                        include_once 'profile.php';
+                        include_once 'perfil.php';
                         break;
                     case 'Usuarios':
                         include_once 'usuarios.php';
@@ -164,7 +165,7 @@ session_start();
         <script type="text/javascript" src="../js/cp.js"></script>
         <script type="text/javascript" src="../js/editarPerfil.js"></script>
         <script type="text/javascript" src="../js/editarDireccionUsu.js"></script>
-
+        <script type="text/javascript" src="../js/validaciones.js"></script>
 
 </body>
 

@@ -45,10 +45,56 @@ $(document).on('submit', '#formulario', function (event) {
     event.preventDefault();
 
     var nombre = $('#nombre').val();
+    var apellidoP = $('#apellidoP').val();
+    var apellidoM = $('#apellidoM').val();
     var usuario = $('#usuario').val();
     var action = $("#action").val();
+    var telefono = $('#telefono').val();
+    var especialidad = $('#especialidad').val();
+    var cedula = $('#cedula').val();
 
-    if (nombre != '' && usuario != 0) {
+
+    if (nombre == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El nombre es requerido.'
+        });
+    } else if (apellidoP == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El apellido paterno es requerido.'
+        });
+    } else if (apellidoM == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El apellido materno es requerido.'
+        });
+    } else if (telefono == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El teléfono es requerido.'
+        });
+    } else if (telefono.length < 10) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El teléfono debe tener 10 dígitos.'
+        });
+    } else if (especialidad == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'La especialidad es requerida.'
+        });
+    } else if (cedula == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'La cédula es requerida.'
+        });
+    } else if (cedula.length < 8) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'La cédula debe tener 8 dígitos.'
+        });
+    } else {
         if (action == 'Crear') {
             $.ajax({
                 url: "../db/registrar.php",
@@ -96,13 +142,6 @@ $(document).on('submit', '#formulario', function (event) {
                 }
             });
         }
-
-
-    } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Algunos campos son requeridos.'
-        });
     }
 });
 
@@ -127,7 +166,31 @@ $("[id^=formEditarAd]").submit(function (e) {
             $('#apellidoP').val(data.apellidoP);
             $('#apellidoM').val(data.apellidoM);
             $('#telefono').val(data.telefono);
-            $('#usuario').val(data.id_usuario);
+            $('#usuario').html('')
+
+            $.ajax({
+                url: "../db/usuarios.php",
+                method: "POST",
+                dataTye: "json",
+                data: { boton: boton, id_admin: id_admin },
+                success: function (data1) {
+                    console.log(data1);
+                    var usuarios = JSON.parse(data1);
+                    usuarios.forEach(usuario => {
+                        console.log(usuario)
+                        console.log("data =" + data)
+                        console.log("Usuario: " + data.usuario)
+
+                        if (usuario['id_usuario'] == data.usuario) {
+                            //Selected
+                            $('#usuario').append('<option value="' + usuario['id_usuario'] + '" selected>' + usuario['id_usuario'] + " : " + usuario['correo'] + '</option>');
+
+                        } else {
+                            $('#usuario').append('<option value="' + usuario["id_usuario"] + '">' + usuario["id_usuario"] + " : " + usuario['correo'] + '</option>');
+                        }
+                    });
+                }
+            })
             console.log(data.id_usuario);
             $('#direccion').val(data.direccion);
             $('#especialidad').val(data.especialidad);

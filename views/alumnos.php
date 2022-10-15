@@ -135,17 +135,7 @@
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Selecciona un usuario</label>
                                 <select class="form-select" id="usuario" name="usuario" aria-label="Default select example">
-                                    <option selected value="0">Usuario</option>
-                                    <?php
-
-                                    while ($r = $resultado->fetch(PDO::FETCH_ASSOC)) {
-
-
-                                    ?>
-                                        <option value="<?php echo $r['id'] ?>"> <?php echo $r['id'] . " : " .  $r['correo'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
+                                    <option>Seleccione usuario</option>
                                 </select>
                             </div>
 
@@ -163,7 +153,7 @@
                             <div class="mb-4">
                                 <label for="grado y grupo" class="form-label">Selecciona grado y grupo</label>
                                 <select class="form-select" id="gp" name="gp" aria-label="Default select example">
-                                    <option selected>Grado y grupo</option>
+                                    <option selected value="0">Grado y grupo</option>
                                     <?php
 
                                     while ($r = $resultadogg->fetch(PDO::FETCH_ASSOC)) {

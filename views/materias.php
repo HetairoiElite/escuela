@@ -99,7 +99,7 @@
                             <br /> -->
 
                             <label for="nombre">Ingrese el nombre</label>
-                            <input type="nombre" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
                             <br />
                         </div>
 
