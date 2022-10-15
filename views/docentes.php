@@ -70,14 +70,14 @@
                                             <form action="" id="formEditarDoc<?php echo $dat['clave_empleado'] ?>" method="POST" class="confirmar d-inline">
                                                 <input type="hidden" name="boton" id="boton<?php echo $dat['clave_empleado'] ?>" value="Docentes">
                                                 <input type="hidden" id="<?php echo $dat['clave_empleado']; ?>" value="<?php echo $dat['clave_empleado']; ?>">
-                                                <button class="btn btn-warning" name="boton" value="Docentes" type="submit"><i class='fas fa-edit'></i> Editar</button>
+                                                <button class="btn btn-warning btn-sm" name="boton" value="Docentes" type="submit"><i class='fas fa-edit'></i></button>
                                                 <!-- <input class="btn btn-danger" type="submit"> -->
                                             </form>
 
                                             <form action="" id="formEliminarDoc<?php echo $dat['clave_empleado'] ?>" method="POST" class="confirmar d-inline">
                                                 <input type="hidden" name="boton" id="boton<?php echo $dat['clave_empleado'] ?>" value="Docentes">
                                                 <input type="hidden" id="<?php echo $dat['clave_empleado']; ?>" value="<?php echo $dat['clave_empleado']; ?>">
-                                                <button class="btn btn-danger" name="boton" value="Docentes" type="submit"><i class='fas fa-trash-alt'></i> Eliminar</button>
+                                                <button class="btn btn-danger btn-sm" name="boton" value="Docentes" type="submit"><i class='fas fa-trash-alt'></i></button>
                                                 <!-- <input class="btn btn-danger" type="submit"> -->
                                             </form>
                                         </td>

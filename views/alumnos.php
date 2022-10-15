@@ -67,14 +67,14 @@
                                             <form action="" id="formEditarAlu<?php echo $dat['matricula'] ?>" method="POST" class="confirmar d-inline">
                                                 <input type="hidden" name="boton" id="boton<?php echo $dat['matricula'] ?>" value="Alumnos">
                                                 <input type="hidden" id="<?php echo $dat['matricula']; ?>" value="<?php echo $dat['matricula']; ?>">
-                                                <button class="btn btn-warning" name="boton" value="Alumnos" type="submit"><i class='fas fa-edit'></i> Editar</button>
+                                                <button class="btn btn-warning btn-sm" name="boton" value="Alumnos" type="submit"><i class='fas fa-edit'></i></button>
                                                 <!-- <input class="btn btn-danger" type="submit"> -->
                                             </form>
 
                                             <form action="" id="formEliminarAlu<?php echo $dat['matricula'] ?>" method="POST" class="confirmar d-inline">
                                                 <input type="hidden" name="boton" id="boton<?php echo $dat['matricula'] ?>" value="Alumnos">
                                                 <input type="hidden" id="<?php echo $dat['matricula']; ?>" value="<?php echo $dat['matricula']; ?>">
-                                                <button class="btn btn-danger" name="boton" value="Alumnos" type="submit"><i class='fas fa-trash-alt'></i> Eliminar</button>
+                                                <button class="btn btn-danger btn-sm" name="boton" value="Alumnos" type="submit"><i class='fas fa-trash-alt'></i></button>
                                                 <!-- <input class="btn btn-danger" type="submit"> -->
                                             </form>
                                         </td>
