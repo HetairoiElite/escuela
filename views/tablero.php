@@ -4,7 +4,7 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid ">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
         <h3 class="text-dark mb-0">Tablero</h3>
     </div>
@@ -137,3 +137,4 @@ $conexion = $objeto->Conectar();
             </div>
         </div>
     </div>
+</div>

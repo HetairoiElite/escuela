@@ -20,7 +20,9 @@ session_start();
 
 <body id="page-top">
     <div id="wrapper">
+
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion color-rojo p-0">
+
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"><img src="../assets/img/login/logo.png" alt="" width="50px"></i></div>
                     <div class="sidebar-brand-text mx-3"><span>Escuelita</span></div>
@@ -52,8 +54,9 @@ session_start();
 
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+
+                <nav class=" navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class=" container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown no-arrow">
@@ -77,6 +80,8 @@ session_start();
                         </ul>
                     </div>
                 </nav>
+
+
 
                 <!-- Start includes -->
 
@@ -131,55 +136,56 @@ session_start();
             <!-- end main -->
 
         </div>
+    </div>
 
 
-        <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
 
-        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../assets/js/bs-init.js"></script>
-        <script src="../assets/js/theme.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/theme.js"></script>
 
-        <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/menu.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
 
-        <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-        <script src="../js/dataTables.bootstrap4.min.js"></script>
-        <script src="../js/borrar.js"></script>
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap4.min.js"></script>
+    <script src="../js/borrar.js"></script>
 
-        <script type="text/javascript" src="../js/plugins/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/sweetalert2.all.min.js"></script>
 
 
-        <!--Scripts de editar y crear de cada modulo -->
+    <!--Scripts de editar y crear de cada modulo -->
 
-        <?php
-        switch ($_SESSION['pagina']) {
-            case 'Usuarios':
-                echo '<script type="text/javascript" src="../js/usuarios.js"></script>';
-                break;
-            case 'Materias':
-                echo '<script type="text/javascript" src="../js/materias.js"></script>';
-                break;
-            case 'Alumnos':
-                echo '<script type="text/javascript" src="../js/alumnos.js"></script>';
-                break;
-            case 'Docentes':
-                echo '<script type="text/javascript" src="../js/docentes.js"></script>';
-                echo '<script type="text/javascript" src="../js/materiasDocentes.js"></script>';
-                break;
-            case 'Administrativos':
-                echo '<script type="text/javascript" src="../js/administrativos.js"></script>';
-                break;
-            default:
+    <?php
+    switch ($_SESSION['pagina']) {
+        case 'Usuarios':
+            echo '<script type="text/javascript" src="../js/usuarios.js"></script>';
+            break;
+        case 'Materias':
+            echo '<script type="text/javascript" src="../js/materias.js"></script>';
+            break;
+        case 'Alumnos':
+            echo '<script type="text/javascript" src="../js/alumnos.js"></script>';
+            break;
+        case 'Docentes':
+            echo '<script type="text/javascript" src="../js/docentes.js"></script>';
+            echo '<script type="text/javascript" src="../js/materiasDocentes.js"></script>';
+            break;
+        case 'Administrativos':
+            echo '<script type="text/javascript" src="../js/administrativos.js"></script>';
+            break;
+        default:
 
-                break;
-        }
-        ?>
+            break;
+    }
+    ?>
 
-        <script type="text/javascript" src="../js/cp.js"></script>
-        <script type="text/javascript" src="../js/editarPerfil.js"></script>
-        <script type="text/javascript" src="../js/editarDireccionUsu.js"></script>
-        <script type="text/javascript" src="../js/validaciones.js"></script>
+    <script type="text/javascript" src="../js/cp.js"></script>
+    <script type="text/javascript" src="../js/editarPerfil.js"></script>
+    <script type="text/javascript" src="../js/editarDireccionUsu.js"></script>
+    <script type="text/javascript" src="../js/validaciones.js"></script>
 
 </body>
 
