@@ -88,7 +88,37 @@ switch ($_POST['boton']) {
             print json_encode($data);
         }
         break;
+    case "DocentesMaterias":
+        $id = $_POST['id'];
+        $consulta = "SELECT * FROM docentes_materias 
+        inner join materias on docentes_materias.clave_materia = materias.id
+        inner join empleado on docentes_materias.clave_docente = clave_empleado
+        WHERE docentes_materias.clave_docente = '$id'";
 
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+
+        if ($resultado->rowCount() >= 1) {
+            $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            print json_encode($data);
+        } else {
+            $data = "error";
+            print json_encode($data);
+        }
+        break;
+    case "Materias":
+        $consulta = "SELECT * FROM materias";
+
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+
+        if ($resultado->rowCount() >= 1) {
+            $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+            print json_encode($data);
+        } else {
+            $data = "error";
+            print json_encode($data);
+        }
     default:
         # code...
         break;

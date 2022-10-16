@@ -162,7 +162,7 @@ try {
                                     </form>
                                 </div>
                             </div>
-                            <div class="card shadow">
+                            <div class="card shadow" id="contacto">
                                 <div class="card-header py-3">
                                     <p class="text-primary m-0 fw-bold">Ajustes de contacto</p>
                                 </div>

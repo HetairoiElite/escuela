@@ -19,7 +19,7 @@
             <br />
             <br />
 
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <div class="table-responsive table mt-2 text-sm-center" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table id="datos_docente" class="table my-0" id="dataTable">
                     <thead>
                         <tr>
@@ -80,6 +80,13 @@
                                                 <button class="btn btn-danger btn-sm" name="boton" value="Docentes" type="submit"><i class='fas fa-trash-alt'></i></button>
                                                 <!-- <input class="btn btn-danger" type="submit"> -->
                                             </form>
+
+                                            <form action="" id="formMateriasDoc<?php echo $dat['clave_empleado'] ?>" method="POST" class="confirmar d-inline">
+                                                <input type="hidden" name="boton" id="boton<?php echo $dat['clave_empleado'] ?>" value="DocentesMaterias">
+                                                <input type="hidden" id="<?php echo $dat['clave_empleado']; ?>" value="<?php echo $dat['clave_empleado']; ?>">
+                                                <button class="btn btn-success btn-sm" name="boton" value="DocentesMaterias" type="submit"><i class='fas fa-book'></i></button>
+                                                <!-- <input class="btn btn-danger" type="submit"> -->
+                                            </form>
                                         </td>
                                     <?php } ?>
                                 </tr>
@@ -102,8 +109,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-content">
+
                     <div class="modal-body">
                         <form method="POST" id="formulario" enctype="multipart/form-data">
+
 
                             <label for="nombre">Ingrese el nombre</label>
                             <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
@@ -220,12 +229,38 @@
 
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
 
-
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!--Modal materias del docente -->
+    <div class="modal fade" id="modalMateriasDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Materias del docente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body" id="modalMateriasDocenteBody">
+                    <form method="POST" id="formularioMaterias" enctype="multipart/form-data">
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_docente" id="id_docente">
+                    <input type="hidden" name="operacion" id="operacion">
+                    <input type="hidden" name="boton" id="boton" value="Docentes">
+
+                    <input type="submit" name="action" id="action" class="btn btn-success" value="Guardar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </div>

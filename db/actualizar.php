@@ -336,6 +336,38 @@ switch ($_POST['boton']) {
 
         break;
 
+    case "DocentesMaterias":
+        $id = $_POST['id_docente'];
+        $materias = $_POST['materias'];
+
+        $consulta = "SELECT * FROM docentes_materias WHERE clave_docente = '$id'";
+
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+
+        if ($resultado->rowCount() >= 1) {
+            $consulta1 = "DELETE FROM docentes_materias WHERE clave_docente = '$id'";
+            $resultado1 = $conexion->prepare($consulta1);
+            $resultado1->execute();
+        }
+
+        foreach ($materias as $materia) {
+            $consulta2 = "INSERT INTO docentes_materias (clave_docente, clave_materia) VALUES (?,?)";
+            $resultado2 = $conexion->prepare($consulta2);
+            $resultado2->execute([$id, $materia]);
+        }
+
+        if ($resultado2) {
+            $data = "success";
+            print json_encode($data);
+        } else {
+            $data = "error";
+            print json_encode($data);
+        }
+
+
+        break;
+
     default:
         # code...
         break;

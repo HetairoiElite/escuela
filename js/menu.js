@@ -8,11 +8,18 @@ $("a").on("click", function () {
         dataType: 'json',
         data: { pagina: id },
         success: function (data) {
-            if (data != 'error') {
-                console.log(data);
-                window.location.reload()
-            }
 
+            if (data == 'change') {
+
+                window.location.reload();
+
+            } else {
+
+                if (data != 'error') {
+                    console.log(data);
+                    window.location.reload()
+                }
+            }
         }
     })
 

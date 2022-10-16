@@ -21,7 +21,7 @@
             <br />
             <br />
 
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <div class="table-responsive table mt-2 text-sm-center" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table id="datos_admin" class="table my-0" id="dataTable">
                     <thead>
                         <tr>

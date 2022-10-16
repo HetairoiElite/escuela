@@ -11,6 +11,11 @@ switch ($_POST['pagina']) {
         $_SESSION['pagina'] = 'Perfil';
         print json_encode('success');
         break;
+    case 'PerfilContacto':
+        $_SESSION['pagina'] = 'PerfilContacto';
+        print json_encode('change');
+        break;
+
     case 'Usuarios':
         $_SESSION['pagina'] = 'Usuarios';
         print json_encode('success');
@@ -46,10 +51,6 @@ switch ($_POST['pagina']) {
         break;
     case 'Materias':
         $_SESSION['pagina'] = 'Materias';
-        print json_encode('success');
-        break;
-    case 'NuevaMateria':
-        $_SESSION['pagina'] = 'NuevaMateria';
         print json_encode('success');
         break;
     default:
