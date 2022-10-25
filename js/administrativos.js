@@ -9,6 +9,7 @@ $(document).ready(function () {
         $("#imagen_subida").html("");
     });
 
+    
 
     $('#datos_admin').DataTable({
         language: {
